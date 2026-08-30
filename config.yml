@@ -5,19 +5,10 @@
 default:
   paths:
     functions: "function"
-    scripts: "scripts"
+    notebooks: "notebooks"
     data: "data"
     outputs: "outputs"
-    logs: "logs"
   project:
-    name: "Production Pipeline Template"
+    name: "Adhoc Template"
     version: "0.1.0"
     author: "Louis Trocellier"
-  logging:
-    level: "DEBUG"
-    log_to_file: true
-
-production:
-  logging:
-    level: "INFO"
-    log_to_file: true
