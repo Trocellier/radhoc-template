@@ -1,0 +1,23 @@
+# config.yml ----------------------------------------------------------------- #
+# Author: Louis Trocellier
+# Description: Configuration parameters, paths, and environment settings.
+
+default:
+  paths:
+    functions: "function"
+    scripts: "scripts"
+    data: "data"
+    outputs: "outputs"
+    logs: "logs"
+  project:
+    name: "Production Pipeline Template"
+    version: "0.1.0"
+    author: "Louis Trocellier"
+  logging:
+    level: "DEBUG"
+    log_to_file: true
+
+production:
+  logging:
+    level: "INFO"
+    log_to_file: true
