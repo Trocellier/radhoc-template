@@ -1,0 +1,94 @@
+---
+title: "02 - Final Analytical Report"
+author: "Louis Trocellier"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: true
+    theme: flatly
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+knitr::opts_knit$set(root.dir = "..")
+source(here::here("global.R"))
+```
+
+```{r}
+#| label: load-and-process-data
+#| include: false
+
+# Execution of pipeline steps
+settings <- fetch_data_settings()
+df_raw   <- fetch_data_execution(settings)
+
+# Place data transformation / processing functions here if available
+df_clean <- df_raw
+```
+
+# Executive Summary
+Brief synthesis of the main insights and findings derived from the analysis.
+Key Takeaway 1: Main observation or business finding.
+Key Takeaway 2: Critical metric or pattern identified.
+Recommendation: Suggested next action based on data.
+
+# Key Performance Indicators
+```{r}
+#| label: kpi-summary
+
+# Compute core aggregated metrics
+metrics <- df_clean %>% 
+  summarise(
+    total_obs = n(),
+    avg_value = mean(value, na.rm = TRUE),
+    max_value = max(value, na.rm = TRUE),
+    min_value = min(value, na.rm = TRUE)
+  )
+
+# Display formatted KPI summary
+metrics %>% 
+  knitr::kable(
+    col.names = c("Total Observations", "Average Value", "Max Value", "Min Value"),
+    digits = 2,
+    caption = "Summary Metrics Overview"
+  )
+```
+
+# Analytical Findings
+## Key Distribution & Trends
+```{r}
+#| label: plot-main-finding
+#| fig-width: 8
+#| fig-height: 4.5
+
+df_clean %>% 
+  ggplot(aes(x = id, y = value)) +
+  geom_line(color = "#2c3e50", linewidth = 1) +
+  geom_point(color = "#e74c3c", size = 2) +
+  theme_minimal() +
+  labs(
+    title = "Value Distribution Across Sample",
+    subtitle = "Analysis based on processed pipeline data",
+    x = "Observation ID",
+    y = "Value"
+  )
+```
+
+# Summary Data Table
+```{r}
+#| label: data-table
+
+# Display detailed results table
+df_clean %>% 
+  head(10) %>% 
+  knitr::kable(
+    digits = 2,
+    caption = "First 10 Observations of the Analysis Dataset"
+  )
+```
