@@ -1,7 +1,6 @@
-Plaintext
 # .gitignore ----------------------------------------------------------------- #
 # Author: Louis Trocellier
-# Description: Git ignore rules for the project.
+# Description: Git ignore rules for session, data, secrets, and rendered notebooks.
 
 # RStudio / R Session files
 .Rproj.user
@@ -23,7 +22,16 @@ renv/python/
 renv/sandbox/
 renv/staging/
 
-# Generated Pipeline Data & Logs
+# Quarto & RMarkdown Rendered Outputs & Cache
+*.html
+*.pdf
+*.docx
+*.md
+*_files/
+*_cache/
+.quarto/
+
+# Data, Logs & Generated Outputs
 logs/*
 !logs/.gitkeep
 
