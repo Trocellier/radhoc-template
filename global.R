@@ -9,6 +9,7 @@ library(logger)
 library(dplyr)
 library(purrr)
 library(here)
+library(ggplot2)
 
 # Environment & Configuration ----------------------------------------------- #
 # Load environment variables from .env if present

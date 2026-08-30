@@ -1,0 +1,72 @@
+---
+title: "01 - Exploratory Data Analysis"
+author: "Louis Trocellier"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: show
+    embed-resources: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+knitr::opts_knit$set(root.dir = "..")
+source(here::here("global.R"))
+```
+
+# 1. Data Fetching & Overview
+```{r}
+#| label: fetch-data
+
+settings <- fetch_data_settings()
+df_raw <- fetch_data_execution(settings)
+fetch_data_exports(df_raw)
+
+# data overview
+glimpse(df_raw)
+```
+
+# 2. Data Cleaning & Integrity Checks
+```{r}
+#| label: data-quality
+
+# data quality checks
+df_raw %>% 
+  summarise(
+    total_rows = n(),
+    distinct_ids = n_distinct(id),
+    na_count = sum(is.na(df_raw))
+  )
+```
+
+# 3. Univariate & Bivariate Analysis
+```{r}
+#| label: exploratory-plots
+#| fig-width: 8
+#| fig-height: 5
+
+# Univariate Analysis: Distribution of 'value'
+df_raw %>% 
+  ggplot(aes(x = value)) +
+  geom_histogram(bins = 10, fill = "steelblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Distribution of Value", x = "Value", y = "Count")
+
+# Bivariate Analysis: Value over Time
+df_raw %>% 
+  ggplot(aes(x = timestamp, y = value)) +
+  geom_line(color = "steelblue") +
+  theme_minimal() +
+  labs(title = "Value Over Time", x = "Date / Time", y = "Value")
+
+# Boxplot of 'value'
+df_raw %>% 
+  ggplot(aes(y = value)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Outliers check", y = "Value")
+```
