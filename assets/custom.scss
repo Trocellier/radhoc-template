@@ -1,0 +1,201 @@
+/* custom.scss -------------------------------------------------------------- */
+/* Author: Louis Trocellier                                                   */
+/* Description: Minimal & high-visibility SCSS template for Quarto reports.   */
+
+/*-- scss:defaults --*/
+
+/* STYLE PRESETS ------------------------------------------------------------ */
+/* PRESET 1: Tech / Corporate Blue (par défaut) 
+$primary:       #1E3A8A;
+$secondary:     #0D9488;
+$body-bg:       #F8FAFC;
+$card-bg:       #FFFFFF;
+$text-color:    #1E293B;
+$link-color:    #0D9488;
+*/
+/* PRESET 2: Finance / Institutional Navy
+$primary:       #0A2540;
+$secondary:     #00D4B2;
+$body-bg:       #F7FAFC;
+$card-bg:       #FFFFFF;
+$text-color:    #0F172A;
+$link-color:    #00D4B2;
+*/
+
+/* PRESET 3: Eco / Sustainability Forest
+$primary:       #14532D;
+$secondary:     #16A34A;
+$body-bg:       #F0FDF4;
+$card-bg:       #FFFFFF;
+$text-color:    #14532D;
+$link-color:    #16A34A;
+*/
+
+/* PRESET 4: Modern Slate & Indigo*/
+$primary:       #312E81;
+$secondary:     #6366F1;
+$body-bg:       #F1F5F9;
+$card-bg:       #FFFFFF;
+$text-color:    #1E293B;
+$link-color:    #6366F1;
+
+
+/* PRESET 5: Dark Professional
+$primary:       #E2E8F0;
+$secondary:     #38BDF8;
+$body-bg:       #0F172A;
+$card-bg:       #1E293B;
+$text-color:    #E2E8F0;
+$link-color:    #38BDF8;
+*/
+
+/* Dynamic Overrides Bootstrap -------------------------------------------- */
+$body-color: $text-color;
+$theme-primary: $primary;
+$theme-secondary: $secondary;
+
+
+/*-- scss:rules --*/
+/* Body & Background ------------------------------------------------------ */
+html, body, #quarto-content, main.content {
+  background-color: $body-bg !important;
+  color: $text-color;
+}
+
+/* Header de Titre Quarto ------------------------------------------------- */
+.quarto-title-block.default {
+  background-color: $card-bg;
+  border-left: 6px solid $primary;
+  border-bottom: 3px solid $secondary;
+  padding: 1.5rem 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  .title {
+    color: $primary !important;
+    font-size: 2rem;
+    font-weight: 700;
+    border-bottom: none !important;
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .quarto-title-meta-author-name,
+  .quarto-title-meta-heading,
+  .quarto-title-meta-contents {
+    color: $text-color !important;
+    opacity: 0.85;
+  }
+}
+
+/* Headings -------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  color: $primary !important;
+  font-weight: 700;
+}
+
+h1:not(.title) {
+  border-bottom: 3px solid $secondary;
+  padding-bottom: 0.4rem;
+  margin-top: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+h2 {
+  border-bottom: 2px solid mix($secondary, $body-bg, 40%);
+  padding-bottom: 0.25rem;
+  margin-top: 1.5rem;
+}
+
+/* Links --------------------------------------------------------------- */
+a {
+  color: $link-color;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: lighten($link-color, 10%);
+    border-bottom-color: $link-color;
+  }
+}
+
+/* Tables -------------------------------------------------------------- */
+table, .table {
+  width: 100%;
+  background-color: $card-bg !important;
+  color: $text-color !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  thead th {
+    background-color: $primary !important;
+    color: #ffffff !important;
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    border: none;
+  }
+
+  tbody tr {
+    background-color: $card-bg !important;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: mix($primary, $card-bg, 5%) !important;
+  }
+
+  tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid mix($primary, $card-bg, 10%);
+    color: $text-color !important;
+  }
+}
+
+/* Code Blocks --------------------------------------------------------- */
+div.sourceCode, div.sourceCode pre {
+  background-color: $card-bg !important;
+  border-radius: 6px;
+}
+
+div.sourceCode {
+  border-left: 5px solid $secondary !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.callout {
+  border-left: 5px solid $secondary !important;
+  background-color: mix($secondary, $card-bg, 8%) !important;
+  border-radius: 0 8px 8px 0;
+  color: $text-color;
+}
+
+/* Table of Contents -------------------------------------------------- */
+#TOC {
+  background-color: $card-bg;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid $secondary;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+
+  a {
+    color: $text-color;
+    &.active {
+      color: $primary !important;
+      font-weight: 700;
+    }
+  }
+}
+
+/* Custom Logo in Title Block ------------------------------------------ */
+.quarto-title-block.default {
+  background-image: url('../assets/logo.png');
+  background-repeat: no-repeat;
+  background-position: top 1.5rem right 2rem;
+  background-size: auto 40px;
+}
