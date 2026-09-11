@@ -4,7 +4,7 @@
 
 default:
   paths:
-    functions: "function"
+    functions: "src/functions"
     notebooks: "notebooks"
     data: "data"
     outputs: "outputs"
